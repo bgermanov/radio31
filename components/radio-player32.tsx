@@ -1,107 +1,115 @@
-"use client"
+"use client";
 
-import { useState, useRef, useEffect, useCallback } from "react"
-import { Play, Pause, Volume2, VolumeX, Radio, Disc3, Music } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Slider } from "@/components/ui/slider"
-import { cn } from "@/lib/utils"
+import { useState, useRef, useEffect, useCallback } from "react";
+import {
+  Play,
+  Pause,
+  Volume2,
+  VolumeX,
+  Radio,
+  Disc3,
+  Music,
+} from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Slider } from "@/components/ui/slider";
+import { cn } from "@/lib/utils";
 
 interface NowPlayingData {
   station: {
-    name: string
-    listen_url: string
-  }
+    name: string;
+    listen_url: string;
+  };
   live: {
-    is_live: boolean
-    streamer_name: string
-  }
+    is_live: boolean;
+    streamer_name: string;
+  };
   now_playing: {
     song: {
-      title: string
-      artist: string
-      album: string
-      art: string
-    }
-    elapsed: number
-    duration: number
-  }
+      title: string;
+      artist: string;
+      album: string;
+      art: string;
+    };
+    elapsed: number;
+    duration: number;
+  };
   listeners: {
-    current: number
-  }
+    current: number;
+  };
 }
 
-const STREAM_URL = "https://13.62.143.218/listen/radio_31/radio.mp3"
-const API_URL = "https://13.62.143.218/api/nowplaying/1"
+const STREAM_URL = "https://13.62.143.218/listen/radio_32/radio.mp3";
+const API_URL = "https://13.62.143.218/api/nowplaying/2";
 
-export function RadioPlayer() {
-  const [isPlaying, setIsPlaying] = useState(false)
-  const [volume, setVolume] = useState(75)
-  const [isMuted, setIsMuted] = useState(false)
-  const [nowPlaying, setNowPlaying] = useState<NowPlayingData | null>(null)
-  const [isLoading, setIsLoading] = useState(true)
-  const [isOnline, setIsOnline] = useState(true)
-  const [error, setError] = useState<string | null>(null)
-  const audioRef = useRef<HTMLAudioElement | null>(null)
+export function RadioPlayer32() {
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [volume, setVolume] = useState(75);
+  const [isMuted, setIsMuted] = useState(false);
+  const [nowPlaying, setNowPlaying] = useState<NowPlayingData | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+  const [isOnline, setIsOnline] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const fetchNowPlaying = useCallback(async () => {
     try {
       const response = await fetch(API_URL, {
         cache: "no-store",
-      })
-      if (!response.ok) throw new Error("Failed to fetch")
-      const data: NowPlayingData = await response.json()
-      setNowPlaying(data)
-      setIsOnline(true)
-      setError(null)
+      });
+      if (!response.ok) throw new Error("Failed to fetch");
+      const data: NowPlayingData = await response.json();
+      setNowPlaying(data);
+      setIsOnline(true);
+      setError(null);
     } catch {
-      setIsOnline(false)
-      setError("Unable to connect to station")
+      setIsOnline(false);
+      setError("Unable to connect to station");
     } finally {
-      setIsLoading(false)
+      setIsLoading(false);
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
-    fetchNowPlaying()
-    const interval = setInterval(fetchNowPlaying, 5000)
-    return () => clearInterval(interval)
-  }, [fetchNowPlaying])
+    fetchNowPlaying();
+    const interval = setInterval(fetchNowPlaying, 5000);
+    return () => clearInterval(interval);
+  }, [fetchNowPlaying]);
 
   useEffect(() => {
     if (audioRef.current) {
-      audioRef.current.volume = isMuted ? 0 : volume / 100
+      audioRef.current.volume = isMuted ? 0 : volume / 100;
     }
-  }, [volume, isMuted])
+  }, [volume, isMuted]);
 
   const togglePlay = () => {
-    if (!audioRef.current) return
+    if (!audioRef.current) return;
 
     if (isPlaying) {
-      audioRef.current.pause()
+      audioRef.current.pause();
     } else {
       audioRef.current.play().catch((err) => {
-        console.error("Playback error:", err)
-        setError("Unable to play stream")
-      })
+        console.error("Playback error:", err);
+        setError("Unable to play stream");
+      });
     }
-    setIsPlaying(!isPlaying)
-  }
+    setIsPlaying(!isPlaying);
+  };
 
   const toggleMute = () => {
-    setIsMuted(!isMuted)
-  }
+    setIsMuted(!isMuted);
+  };
 
   const handleVolumeChange = (value: number[]) => {
-    setVolume(value[0])
+    setVolume(value[0]);
     if (value[0] > 0 && isMuted) {
-      setIsMuted(false)
+      setIsMuted(false);
     }
-  }
+  };
 
-  const songTitle = nowPlaying?.now_playing?.song?.title || "Unknown Track"
-  const artistName = nowPlaying?.now_playing?.song?.artist || "Unknown Artist"
-  const albumArt = nowPlaying?.now_playing?.song?.art
-  const listeners = nowPlaying?.listeners?.current || 0
+  const songTitle = nowPlaying?.now_playing?.song?.title || "Unknown Track";
+  const artistName = nowPlaying?.now_playing?.song?.artist || "Unknown Artist";
+  const albumArt = nowPlaying?.now_playing?.song?.art;
+  const listeners = nowPlaying?.listeners?.current || 0;
 
   return (
     <div className="flex min-h-screen flex-col items-center justify-center px-4 pt-20">
@@ -112,26 +120,26 @@ export function RadioPlayer() {
         <span
           className={cn(
             "relative flex h-3 w-3",
-            isOnline ? "text-primary" : "text-destructive"
+            isOnline ? "text-primary" : "text-destructive",
           )}
         >
           <span
             className={cn(
               "absolute inline-flex h-full w-full animate-ping rounded-full opacity-75",
-              isOnline ? "bg-primary" : "bg-destructive"
+              isOnline ? "bg-primary" : "bg-destructive",
             )}
           ></span>
           <span
             className={cn(
               "relative inline-flex h-3 w-3 rounded-full",
-              isOnline ? "bg-primary" : "bg-destructive"
+              isOnline ? "bg-primary" : "bg-destructive",
             )}
           ></span>
         </span>
         <span
           className={cn(
             "text-sm font-semibold uppercase tracking-widest",
-            isOnline ? "text-primary" : "text-destructive"
+            isOnline ? "text-primary" : "text-destructive",
           )}
         >
           {isOnline ? "Live" : "Offline"}
@@ -148,7 +156,7 @@ export function RadioPlayer() {
         <div
           className={cn(
             "relative h-64 w-64 overflow-hidden rounded-2xl border border-border bg-secondary shadow-2xl shadow-primary/20 sm:h-80 sm:w-80",
-            isPlaying && "animate-pulse"
+            isPlaying && "animate-pulse",
           )}
         >
           {albumArt ? (
@@ -162,7 +170,7 @@ export function RadioPlayer() {
               <Disc3
                 className={cn(
                   "h-24 w-24 text-muted-foreground",
-                  isPlaying && "animate-spin"
+                  isPlaying && "animate-spin",
                 )}
                 style={{ animationDuration: "3s" }}
               />
@@ -174,7 +182,7 @@ export function RadioPlayer() {
         <div
           className={cn(
             "absolute inset-0 -z-10 rounded-2xl bg-primary/30 blur-3xl transition-opacity duration-500",
-            isPlaying ? "opacity-60" : "opacity-0"
+            isPlaying ? "opacity-60" : "opacity-0",
           )}
         />
       </div>
@@ -244,10 +252,8 @@ export function RadioPlayer() {
       {/* Station Info */}
       <div className="mt-12 flex items-center gap-2 text-muted-foreground">
         <Radio className="h-4 w-4" />
-        <span className="text-sm">
-          {nowPlaying?.station?.name || "Radio2"}
-        </span>
+        <span className="text-sm">{nowPlaying?.station?.name || "Radio2"}</span>
       </div>
     </div>
-  )
+  );
 }
