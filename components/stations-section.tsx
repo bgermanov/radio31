@@ -1,6 +1,6 @@
 "use client";
 
-import { Music, Zap, User, Beer } from "lucide-react";
+import { Music, Zap, User, Beer, Bubbles, BicepsFlexed } from "lucide-react";
 
 export function StationsSection() {
   return (
@@ -19,8 +19,8 @@ export function StationsSection() {
             Boris Germanov
           </h2>
           <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-            Curating the perfect soundtracks for every mood. Two stations, two
-            vibes, one passion for great music.
+            Curating the perfect soundtracks for every mood. A lot of stations,
+            a lot of vibes, one passion for great music.
           </p>
         </div>
 
@@ -135,7 +135,7 @@ export function StationsSection() {
             <div className="relative">
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Beer className="h-6 w-6" />
+                  <BicepsFlexed className="h-6 w-6" />
                 </div>
                 <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   BG Vibes
@@ -168,7 +168,7 @@ export function StationsSection() {
             <div className="relative">
               <div className="mb-4 flex items-center justify-between">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <Beer className="h-6 w-6" />
+                  <Bubbles className="h-6 w-6" />
                 </div>
                 <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
                   House

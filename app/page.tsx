@@ -14,7 +14,7 @@ export default function Home() {
 
   return (
     <main className="min-h-screen bg-background">
-      <Navbar onSelectRadio={setActiveRadio} activeRadio={activeRadio} />
+      <Navbar onSelectedRadio={setActiveRadio} activeRadio={activeRadio} />
       <HeroSection />
       <StationsSection />
       <div className="pt-20">

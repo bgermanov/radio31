@@ -87,6 +87,9 @@ export function RadioPlayer31() {
     if (isPlaying) {
       audioRef.current.pause();
     } else {
+      const freshURL = `${STREAM_URL}?cache=${Date.now()}`;
+      audioRef.current.src = freshURL;
+      audioRef.current.load();
       audioRef.current.play().catch((err) => {
         console.error("Playback error:", err);
         setError("Unable to play stream");
@@ -116,7 +119,7 @@ export function RadioPlayer31() {
       id="player"
       className="flex min-h-screen flex-col items-center justify-center px-4 pt-20"
     >
-      <audio ref={audioRef} src={STREAM_URL} preload="none" />
+      <audio ref={audioRef} preload="none" />
 
       {/* Status indicator */}
       <div className="mb-8 flex items-center gap-2">
