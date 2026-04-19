@@ -1,7 +1,7 @@
 // components/navbar.tsx
 import { Radio } from "lucide-react";
 
-export function Navbar({ onSelectRadio, activeRadio }) {
+export function Navbar({ onSelectRadio, activeRadio }: {onSelectedRadio:(id:number)=>void,activeRadio: number}) {
   const radios = [
     { id: 31, label: "Radio31" },
     { id: 32, label: "Radio32" },
