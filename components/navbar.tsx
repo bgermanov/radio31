@@ -6,6 +6,8 @@ export function Navbar({ onSelectRadio, activeRadio }) {
     { id: 31, label: "Radio31" },
     { id: 32, label: "Radio32" },
     { id: 33, label: "Radio33" },
+    { id: 34, label: "Radio34" },
+    { id: 35, label: "Radio35" },
   ];
 
   return (
@@ -15,7 +17,12 @@ export function Navbar({ onSelectRadio, activeRadio }) {
           {radios.map((r) => (
             <button
               key={r.id}
-              onClick={() => onSelectRadio(r.id)}
+              onClick={() => [
+                onSelectRadio(r.id),
+                document
+                  .getElementById("player")
+                  ?.scrollIntoView({ behavior: "smooth" }),
+              ]}
               className={`flex items-center gap-2 px-3 py-2 rounded-md transition-colors ${
                 activeRadio === r.id
                   ? "bg-primary/20 text-primary"

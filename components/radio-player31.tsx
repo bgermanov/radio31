@@ -38,8 +38,8 @@ interface NowPlayingData {
   };
 }
 
-const STREAM_URL = "https://13.62.143.218/listen/radio_31/radio.mp3";
-const API_URL = "https://13.62.143.218/api/nowplaying/1";
+const STREAM_URL = "https://radio.bgermanov.eu/listen/radio_31/radio.mp3";
+const API_URL = "https://radio.bgermanov.eu/api/nowplaying/1";
 
 export function RadioPlayer31() {
   const [isPlaying, setIsPlaying] = useState(false);
@@ -112,7 +112,10 @@ export function RadioPlayer31() {
   const listeners = nowPlaying?.listeners?.current || 0;
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center px-4 pt-20">
+    <div
+      id="player"
+      className="flex min-h-screen flex-col items-center justify-center px-4 pt-20"
+    >
       <audio ref={audioRef} src={STREAM_URL} preload="none" />
 
       {/* Status indicator */}

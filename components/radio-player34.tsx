@@ -38,10 +38,10 @@ interface NowPlayingData {
   };
 }
 
-const STREAM_URL = "https://radio.bgermanov.eu/listen/radio_32/radio.mp3";
-const API_URL = "https://radio.bgermanov.eu/api/nowplaying/2";
+const STREAM_URL = "https://radio.bgermanov.eu/listen/radio_34/radio.mp3";
+const API_URL = "https://radio.bgermanov.eu/api/nowplaying/4";
 
-export function RadioPlayer32() {
+export function RadioPlayer34() {
   const [isPlaying, setIsPlaying] = useState(false);
   const [volume, setVolume] = useState(75);
   const [isMuted, setIsMuted] = useState(false);
