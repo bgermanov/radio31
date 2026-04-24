@@ -128,39 +128,6 @@ export function StationsSection() {
               </div>
             </div>
           </div>
-          {/*Radio 34*/}
-          <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/80">
-            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all duration-500 group-hover:bg-primary/20" />
-
-            <div className="relative">
-              <div className="mb-4 flex items-center justify-between">
-                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
-                  <BicepsFlexed className="h-6 w-6" />
-                </div>
-                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
-                  BG Vibes
-                </span>
-              </div>
-
-              <h3 className="mb-2 text-xl font-semibold text-foreground">
-                Radio 34
-              </h3>
-              <p className="text-muted-foreground">
-                Blend of the highest quality bulgarian street music.
-              </p>
-
-              <div className="mt-6 flex flex-wrap gap-2">
-                {["Trap", "Rap", "BG"].map((genre) => (
-                  <span
-                    key={genre}
-                    className="rounded-full border border-border/50 bg-background/50 px-3 py-1 text-xs text-muted-foreground"
-                  >
-                    {genre}
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
           {/*Radio 35*/}
           <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/80">
             <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all duration-500 group-hover:bg-primary/20" />
@@ -176,7 +143,7 @@ export function StationsSection() {
               </div>
 
               <h3 className="mb-2 text-xl font-semibold text-foreground">
-                Radio 35
+                Radio 34
               </h3>
               <p className="text-muted-foreground">
                 Organic, African and more types of House. Perfect for every
@@ -185,6 +152,39 @@ export function StationsSection() {
 
               <div className="mt-6 flex flex-wrap gap-2">
                 {["House", "Techno", "Electronic"].map((genre) => (
+                  <span
+                    key={genre}
+                    className="rounded-full border border-border/50 bg-background/50 px-3 py-1 text-xs text-muted-foreground"
+                  >
+                    {genre}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+          {/*Radio 34*/}
+          <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-6 backdrop-blur-sm transition-all duration-300 hover:border-primary/50 hover:bg-card/80">
+            <div className="absolute -right-8 -top-8 h-32 w-32 rounded-full bg-primary/10 blur-3xl transition-all duration-500 group-hover:bg-primary/20" />
+
+            <div className="relative">
+              <div className="mb-4 flex items-center justify-between">
+                <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/10 text-primary">
+                  <BicepsFlexed className="h-6 w-6" />
+                </div>
+                <span className="rounded-full bg-primary/10 px-3 py-1 text-xs font-medium text-primary">
+                  BG Vibes
+                </span>
+              </div>
+
+              <h3 className="mb-2 text-xl font-semibold text-foreground">
+                Radio 35
+              </h3>
+              <p className="text-muted-foreground">
+                Blend of the highest quality bulgarian street music.
+              </p>
+
+              <div className="mt-6 flex flex-wrap gap-2">
+                {["Trap", "Rap", "BG"].map((genre) => (
                   <span
                     key={genre}
                     className="rounded-full border border-border/50 bg-background/50 px-3 py-1 text-xs text-muted-foreground"
